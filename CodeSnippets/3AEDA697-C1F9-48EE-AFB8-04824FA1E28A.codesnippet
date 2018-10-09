@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>QK_ListTableVC</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@interface &lt;#expression#&gt; ()&lt;UITableViewDelegate,UITableViewDataSource&gt;
+
+@property (nonatomic, strong)  UITableView *listTable;
+
+@end
+
+@implementation &lt;#expression#&gt;
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    
+    self.title = &lt;#expression#&gt;;
+    
+    [self.view addSubview:self.listTable];
+    
+    [self requestListInfo];
+}
+
+- (UITableView *)listTable{
+    if (!_listTable) {
+        _listTable=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, &lt;#expression#&gt;) style:UITableViewStyleGrouped];
+        
+        _listTable.delegate = self;
+        _listTable.dataSource = self;
+        _listTable.showsHorizontalScrollIndicator = NO;
+        _listTable.showsVerticalScrollIndicator  = NO;
+        _listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _listTable.backgroundColor=pageColor;
+        
+        [_listTable registerNib:[UINib nibWithNibName:NSStringFromClass([&lt;#expression#&gt; class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([&lt;#expression#&gt; class])];
+        
+    }
+    return _listTable;
+}
+
+#pragma mark - tableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;{
+    
+    return &lt;#expression#&gt;;
+}
+
+#pragma mark - cell
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;{
+    
+    &lt;#expression#&gt; *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([&lt;#expression#&gt; class]) forIndexPath:indexPath];
+    
+    //    cell.model = model;
+    
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return &lt;#expression#&gt;;
+}
+
+#pragma mark - header - footer Height
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 0.01f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return 0.01f;
+}
+
+/**
+ 请求list
+ 
+ */
+- (void)requestListInfo{
+    
+    FZJTRequestApi *api =  [[FZJTRequestApi alloc] init].fzjtRequestURL(SERVER_READ(@"directTrain/queryDirectActivityDet")).fzjtMethod(YTKRequestMethodPost).fzjtBody([NSString stringWithFormat:@"{\"directKey\":\"%@\",\"flag\":\"%@\",\"goodsSpu\":\"%@\"}",_directKey,_indexSign,_goodsSpu]);
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self actionLoadingControl];
+    
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        //        NSLog(@"%@", request.responseString);
+        
+        [weakSelf analysisData:request.responseJSONObject];
+        
+        [weakSelf cancelLoadingControl];
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        NSLog(@"%@", request.requestOperationError);
+        
+        [weakSelf cancelLoadingControl];
+        
+        [weakSelf showNetWorkErrorViewWithReload:^{
+            
+            [weakSelf requestListInfo];
+        }];
+        
+    }];
+    
+}
+
+/**
+ 解析数据
+ 
+ @param dic 数据字典
+ */
+- (void)analysisData:(NSDictionary *)dic{
+    
+    if ([dic[@"code"]isEqualToString:@"0"]) {
+        
+        [self getInfoInformation:dic[@"info"]];
+        
+    }else{
+        
+        [self showHint:dic[@"desc"]];
+        
+        __weak typeof(self) weakSelf = self;
+        [self showNetWorkErrorViewWithReload:^{
+            
+            [weakSelf requestListInfo];
+        }];
+    }
+}
+
+- (void)getInfoInformation:(NSDictionary *)dicInfo{
+    
+    &lt;#expression#&gt;
+    
+    
+    [self.listTable reloadData];
+    
+}
+
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3AEDA697-C1F9-48EE-AFB8-04824FA1E28A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>QK_ListTableVC</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

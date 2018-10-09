@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>lazytable_qk</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark - lazyTable
+- (UITableView *)&lt;#tableName#&gt;{
+    if (!_&lt;#tableName#&gt;) {
+        _&lt;#tableName#&gt;=[[UITableView alloc]initWithFrame:&lt;#tableFrame#&gt; style:UITableViewStylePlain];
+        
+        _&lt;#tableName#&gt;.delegate = self;
+        _&lt;#tableName#&gt;.dataSource = self;
+        _&lt;#tableName#&gt;.showsHorizontalScrollIndicator = NO;
+        _&lt;#tableName#&gt;.showsVerticalScrollIndicator  = NO;
+        _&lt;#tableName#&gt;.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _&lt;#tableName#&gt;.backgroundColor=&lt;#tableBgColor#&gt;;
+        
+    }
+    return _&lt;#tableName#&gt;;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9B66C7AB-5035-4C8C-B2C9-4C1100F871C7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>TableView_lazyLoad</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>TableView_lazyLoad</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

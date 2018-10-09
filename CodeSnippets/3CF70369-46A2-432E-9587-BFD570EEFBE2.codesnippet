@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>tableview_delegate_datasource_qk</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark - UITableViewDataSource/UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return &lt;#number#&gt;;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return &lt;#number#&gt;;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    &lt;#cellClass#&gt; *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([&lt;#cellClass#&gt; class])];
+    
+    if (!cell) {
+        
+        cell = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([&lt;#cellClass#&gt; class]) owner:self options:nil].lastObject;
+        //        cell = [[&lt;#cellClass#&gt; alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([&lt;#cellClass#&gt; class])];
+    }
+    //赋值
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return &lt;#cellHeight#&gt;;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3CF70369-46A2-432E-9587-BFD570EEFBE2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>TableViewDelegate_TableViewDatasource</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>TableViewDelegate_TableViewDatasource</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
